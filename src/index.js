@@ -75,7 +75,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
+        moves: []
       }],
       stepNumber: 0,
       xIsNext: true
@@ -86,15 +87,19 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+    const moves = current.moves.slice();
     
     if (checkWinner(squares) || squares[i]) {
       return;
     }
 
     squares[i] = this.state.xIsNext ? 'X' : 'O';
+    moves[this.state.stepNumber] = squares[i] + '-' + (i + 1);
+
     this.setState({
       history: history.concat([{
-        squares: squares
+        squares: squares,
+        moves: moves
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
@@ -111,11 +116,12 @@ class Game extends React.Component {
   render () {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
+    const moves = current.moves.slice();
     const winner = checkWinner(current.squares);
 
-    const moves = history.map((step, move) => {
+    const movesHistory = history.map((step, move) => {
       const desc = move ?
-      'Go to move #' + move :
+      'Go to move #' + move + ': ' + moves[move-1]:
       'Go to start';
 
       return (
@@ -142,7 +148,7 @@ class Game extends React.Component {
 
         <div className='game-info'>
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <ol>{movesHistory}</ol>
         </div>
       </div>
     )
