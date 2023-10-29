@@ -51,7 +51,10 @@ ol, ul {
     width: 34px;
 }
 
-.horizontal {
+.horizontal,
+.vertical, 
+.diagonal-l,
+.diagonal-r {
     position: relative;
     display: block;
     background-color: #ffffff;
@@ -66,12 +69,6 @@ ol, ul {
     height: 2px;
     background-color: #ff0000;
 }
-
-.vertical {
-    position: relative;
-    display: block;
-    background-color: #ffffff;
-}
     
 .vertical::after {
     content: '';
@@ -82,12 +79,6 @@ ol, ul {
     height: 2px;
     background-color: #ff0000;
     transform: rotate(90deg);
-}
-
-.diagonal-r {
-    position: relative;
-    display: block;
-    background-color: #ffffff;
 }
     
 .diagonal-r::after {
@@ -100,13 +91,6 @@ ol, ul {
     height: 2px;
     background-color: #ff0000;
     transform: rotate(45deg);
-}
-  
-
-.diagonal-l {
-    position: relative;
-    display: block;
-    background-color: #ffffff;
 }
     
 .diagonal-l::after {
