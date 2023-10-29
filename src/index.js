@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
 
-let winnerLine = ''
+let winnerLine = '';
+let winnerLineDirection = ''
 
 function checkWinner (squares) {
   const lines = [
@@ -20,6 +21,15 @@ function checkWinner (squares) {
     let [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       winnerLine = lines[i];
+        if (i <= 2) {
+          winnerLineDirection = 'horizontal'
+        } else if (i > 2 && i <= 5) {
+          winnerLineDirection = 'vertical'
+        } else if (i === 6) {
+          winnerLineDirection = 'diagonal-r'
+        } else if (i === 7 ) {
+          winnerLineDirection = 'diagonal-l'
+        }
       return squares[a];
     }
   }
@@ -29,7 +39,7 @@ function checkWinner (squares) {
 
 class Square extends React.Component {
   render () {
-    const className = this.props.isWinning ? 'winning' : 'square';
+    const className = this.props.isWinning ? `winning ${winnerLineDirection}` : 'square';
 
     return (
       <button 
@@ -117,6 +127,7 @@ class Game extends React.Component {
       stepNumber: step,
       xIsNext: (step % 2 === 0)
     })
+    winnerLine = '';
   }
 
   render () {
@@ -124,9 +135,6 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const moves = current.moves.slice();
     const winner = checkWinner(current.squares);
-    const winningLine = checkWinner(current.squares);
-    console.log(winningLine)
-    console.log(winnerLine)
 
     const movesHistory = history.map((step, move) => {
       const desc = move ?
@@ -153,7 +161,7 @@ class Game extends React.Component {
         <Board 
         squares={current.squares}
         onClick={(i) => this.handleClick(i)}
-        winningLine={winningLine || []}
+        winningLine={winnerLine || []}
         />
         </div>
 
