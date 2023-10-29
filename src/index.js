@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
 
+let winnerLine = ''
 
 function checkWinner (squares) {
   const lines = [
@@ -18,7 +19,8 @@ function checkWinner (squares) {
   for (let i = 0; i < lines.length; i++) {
     let [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[i];
+      winnerLine = lines[i];
+      return squares[a];
     }
   }
 
@@ -42,7 +44,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    const isWinning = this.props.winningLine.includes(i);
+    const isWinning = winnerLine.includes(i);
 
       return (
         <Square value={this.props.squares[i]}
@@ -124,6 +126,7 @@ class Game extends React.Component {
     const winner = checkWinner(current.squares);
     const winningLine = checkWinner(current.squares);
     console.log(winningLine)
+    console.log(winnerLine)
 
     const movesHistory = history.map((step, move) => {
       const desc = move ?

@@ -37,12 +37,12 @@ ol, ul {
 }
 
 .winning {
-    background: #00ff04;
-    border: 1px solid #ff0000;
+    background: #ffffff;
+    border: 4px solid #ff0000;
     float: left;
     font-size: 24px;
     font-weight: bold;
-    line-height: 34px;
+    line-height: 30px;
     height: 34px;
     margin-right: -1px;
     margin-top: -1px;
