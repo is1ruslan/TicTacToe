@@ -39,10 +39,12 @@ function checkWinner (squares) {
 class Square extends React.Component {
   render () {
     const className = this.props.isWinning ? `winning ${winnerLineDirection}` : 'square';
+    const XorO = this.props.idName;
 
     return (
       <button 
       className={className}
+      id={XorO}
       onClick={this.props.onClick}
       >
         {this.props.value}
@@ -54,12 +56,14 @@ class Square extends React.Component {
 class Board extends React.Component {
   renderSquare(i) {
     const isWinning = winnerLine.includes(i);
+    const idName = this.props.squares[i] === 'X' ? 'X' : 'O';
 
       return (
         <Square value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
         key={i}
         isWinning={isWinning}
+        idName={idName}
         />
       )
   }
@@ -158,6 +162,7 @@ class Game extends React.Component {
 
     return (
       <div className='game' >
+        <div className='status'>{status}</div>
         <div className='game-board' >
         <Board 
         squares={current.squares}
@@ -167,7 +172,6 @@ class Game extends React.Component {
         </div>
 
         <div className='game-info'>
-          <div>{status}</div>
           <ol>{movesHistory}</ol>
         </div>
       </div>
