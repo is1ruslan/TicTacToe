@@ -1,5 +1,5 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
+    font: 16px "Century Gothic", Futura, sans-serif;
     margin: 20px;
     background-color: rgba(0, 255, 251, 0.494);
   }
@@ -17,13 +17,38 @@ ol, ul {
 }
 
 .status {
-    font-size: 48px;
+    font-size: 5vh;
     font-weight: bold;
-    margin-top: 7vh;
+    margin-top: 5vh;
 }
 
 .game-board {
     margin-top: 7vh;
+}
+
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+  
+.square {
+    background: #fff;
+    border: 2px solid #999;
+    float: left;
+    font-size: 7vh;
+    font-weight: bold;
+    line-height: 100%;
+    height: 11vh;
+    width: 11vh;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+}
+  
+.square:focus {
+    outline: none;
 }
 
 .game-info {
@@ -38,11 +63,11 @@ ol, ul {
 }
 
 .move-button {
-    width: 200px;
-    font-size: 16px;
+    width: 30vh;
+    font-size: 2.5vh;
     padding: 10px 20px;
     border: 0;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #ffb700;
     color: black;
     cursor: pointer;
@@ -51,48 +76,26 @@ ol, ul {
 }
 
 .start {
-    width: 150px;
+    width: 20vh;
     background-color: #ffb700;
 }
 
-.board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-  
-.square {
-    background: #fff;
-    border: 2px solid #999;
-    float: left;
-    font-size: 48px;
-    font-weight: bold;
-    line-height: 100%;
-    height: 68px;
-    width: 68px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-}
-  
-.square:focus {
-    outline: none;
-}
+
+/* winners field */
 
 .winning {
     background: #ffffff;
-    border: 3px solid #ff0000;
+    border: 0.7vh solid #ff0000;
     float: left;
-    font-size: 24px;
+    font-size: 7vh;
     font-weight: bold;
-    line-height: 30px;
-    height: 34px;
+    line-height: 100%;
+    width: 11vh;
+    height: 11vh;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 34px;
 }
 
 .horizontal,
@@ -101,9 +104,9 @@ ol, ul {
 .diagonal-r {
     position: relative;
     display: block;
-    width: 68px;
-    height: 68px;
-    font-size: 48px;
+    width: 11vh;
+    height: 11vh;
+    font-size: 7vh;
     background-color: #ffffff;
 }
     
@@ -112,19 +115,19 @@ ol, ul {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50%;
-    height: 2px;
+    top: 46%;
+    height: 0.4vh;
     background-color: #ff0000;
 }
     
 .vertical::after {
     content: '';
     position: absolute;
-    left: 0;
+    left: -3%;
     right: 0;
-    top: 49%;
-    width: 102%;
-    height: 2px;
+    top: 50%;
+    width: 106%;
+    height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(90deg);
 }
@@ -134,9 +137,9 @@ ol, ul {
     position: absolute;
     left: -25%;
     right: 0;
-    top: 50%;
+    top: 48%;
     width: 150%;
-    height: 2px;
+    height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(45deg);
 }
@@ -146,9 +149,9 @@ ol, ul {
     position: absolute;
     left: -25%;
     right: 0;
-    top: 50%;
+    top: 48%;
     width: 150%;
-    height: 2px;
+    height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(135deg);
 }
