@@ -27,7 +27,32 @@ ol, ul {
 }
 
 .game-info {
-    margin-right: 20px;
+    margin-right: 40px;
+}
+
+.moves-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.move-button {
+    width: 200px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #ffb700;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.start {
+    width: 150px;
+    background-color: #ffb700;
 }
 
 .board-row:after {

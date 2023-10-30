@@ -39,12 +39,11 @@ function checkWinner (squares) {
 class Square extends React.Component {
   render () {
     const className = this.props.isWinning ? `winning ${winnerLineDirection}` : 'square';
-    const XorO = this.props.idName;
 
     return (
       <button 
       className={className}
-      id={XorO}
+      id={this.props.value}
       onClick={this.props.onClick}
       >
         {this.props.value}
@@ -56,14 +55,12 @@ class Square extends React.Component {
 class Board extends React.Component {
   renderSquare(i) {
     const isWinning = winnerLine.includes(i);
-    const idName = this.props.squares[i] === 'X' ? 'X' : 'O';
 
       return (
         <Square value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
         key={i}
         isWinning={isWinning}
-        idName={idName}
         />
       )
   }
@@ -140,13 +137,16 @@ class Game extends React.Component {
     const winner = checkWinner(current.squares);
 
     const movesHistory = history.map((step, move) => {
+      const moveUndef = moves[move-1] ? moves[move-1] : '';
       const desc = move ?
-      'Go to move #' + move + ': ' + moves[move-1]:
+      'Go to move #' + move + ': ' + moveUndef :
       'Go to start';
+
+      const className = move ? 'move-button' : 'move-button start'
 
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className={className} onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       )
     })
@@ -172,7 +172,7 @@ class Game extends React.Component {
         </div>
 
         <div className='game-info'>
-          <ol>{movesHistory}</ol>
+          <ol className='moves-history'>{movesHistory}</ol>
         </div>
       </div>
     )
