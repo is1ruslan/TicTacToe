@@ -85,7 +85,7 @@ ol, ul {
 
 .winning {
     background: #ffffff;
-    border: 0.7vh solid #ff0000;
+    border: 2px solid #ff0000;
     float: left;
     font-size: 7vh;
     font-weight: bold;
@@ -104,9 +104,6 @@ ol, ul {
 .diagonal-r {
     position: relative;
     display: block;
-    width: 11vh;
-    height: 11vh;
-    font-size: 7vh;
     background-color: #ffffff;
 }
     
@@ -125,8 +122,8 @@ ol, ul {
     position: absolute;
     left: -3%;
     right: 0;
-    top: 50%;
-    width: 106%;
+    top: 48%;
+    width: 102%;
     height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(90deg);
@@ -135,10 +132,10 @@ ol, ul {
 .diagonal-r::after {
     content: '';
     position: absolute;
-    left: -25%;
+    left: -22%;
     right: 0;
     top: 48%;
-    width: 150%;
+    width: 143%;
     height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(45deg);
@@ -147,10 +144,10 @@ ol, ul {
 .diagonal-l::after {
     content: '';
     position: absolute;
-    left: -25%;
+    left: -22%;
     right: 0;
     top: 48%;
-    width: 150%;
+    width: 143%;
     height: 0.4vh;
     background-color: #ff0000;
     transform: rotate(135deg);

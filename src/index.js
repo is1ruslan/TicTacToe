@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
+import io from 'socket.io-client';
 
 let winnerLine = '';
 let winnerLineDirection = ''
@@ -99,6 +100,15 @@ class Game extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.socket = io('http://localhost:3000');
+
+    this.socket.on('moveMade', (data) => {
+      // 
+      //
+    });
+  }
+
   handleClick (i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -108,6 +118,11 @@ class Game extends React.Component {
     if (checkWinner(squares) || squares[i]) {
       return;
     }
+
+    this.socket.emit('moveMade', {
+      squareIndex: i,
+      squareValue: this.state.xIsNext ? 'X' : 'O'
+    });
 
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     moves[this.state.stepNumber] = squares[i] + '-' + (i + 1);
