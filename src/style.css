@@ -1,7 +1,7 @@
 body {
     font: 16px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: #e6e6ea;
+    background-color: #8fe0e6;
   }
   
 ol, ul {
@@ -159,52 +159,42 @@ ol, ul {
     position: relative;
     display: block;
     background-color: black;
-}
-    
-.horizontal::after {
+}    
+
+.horizontal::after,
+.vertical::after, 
+.diagonal-l::after,
+.diagonal-r::after {
     content: '';
     position: absolute;
+    height: 0.2vh;
+    background-color: #00eeff;
+}
+
+.horizontal::after {
     left: -2%;
-    right: 0;
     width: 104%;
     top: 47%;
-    height: 0.2vh;
-    background-color: #f31616;
 }
     
 .vertical::after {
-    content: '';
-    position: absolute;
     left: -2%;
-    right: 0;
     top: 49%;
     width: 103.9%;
-    height: 0.2vh;
-    background-color: #f31616;
     transform: rotate(90deg);
 }
     
 .diagonal-r::after {
-    content: '';
-    position: absolute;
     left: -24%;
-    right: 0;
     top: 48%;
     width: 147%;
-    height: 0.2vh;
-    background-color: #f31616;
     transform: rotate(45deg);
 }
     
 .diagonal-l::after {
-    content: '';
-    position: absolute;
     left: -22%;
-    right: 0;
     top: 48%;
     width: 146%;
-    height: 0.2vh;
-    background-color: #f31616;
     transform: rotate(135deg);
 }
   
