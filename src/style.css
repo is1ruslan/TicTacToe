@@ -1,7 +1,7 @@
 body {
     font: 16px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: rgba(0, 255, 251, 0.494);
+    background-color: #e6e6ea;
   }
   
 ol, ul {
@@ -16,10 +16,40 @@ ol, ul {
     
 }
 
-.status {
+.name-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 5vh;
     font-weight: bold;
-    margin-top: 5vh;
+    margin-top: 2vh;
+    width: 40vh;
+    height: 15vh;
+    background-color: #ffb700;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    font-weight: bold;
+    margin-top: 2vh;
+    width: 40vh;
+    height: 15vh;
+    color: white;
+}
+
+.board-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vh;
+    height: 100%;
+    background-color: black;
 }
 
 .game-board {
@@ -33,7 +63,7 @@ ol, ul {
 }
   
 .square {
-    background: #fff;
+    background: black;
     border: 2px solid #999;
     float: left;
     font-size: 7vh;
@@ -49,6 +79,30 @@ ol, ul {
   
 .square:focus {
     outline: none;
+}
+
+.cell-0,
+.cell-1,
+.cell-2 {
+    border-top: none;
+}
+
+.cell-0,
+.cell-3,
+.cell-6 {
+    border-left: none;
+}
+
+.cell-2,
+.cell-5,
+.cell-8 {
+    border-right: none;
+}
+
+.cell-6,
+.cell-7,
+.cell-8 {
+    border-bottom: none;
 }
 
 .game-info {
@@ -84,8 +138,8 @@ ol, ul {
 /* winners field */
 
 .winning {
-    background: #ffffff;
-    border: 2px solid #ff0000;
+    background: black;
+    /* border: 2px solid #999; */
     float: left;
     font-size: 7vh;
     font-weight: bold;
@@ -104,40 +158,41 @@ ol, ul {
 .diagonal-r {
     position: relative;
     display: block;
-    background-color: #ffffff;
+    background-color: black;
 }
     
 .horizontal::after {
     content: '';
     position: absolute;
-    left: 0;
+    left: -2%;
     right: 0;
-    top: 46%;
-    height: 0.4vh;
-    background-color: #ff0000;
+    width: 104%;
+    top: 47%;
+    height: 0.2vh;
+    background-color: #f31616;
 }
     
 .vertical::after {
     content: '';
     position: absolute;
-    left: -3%;
+    left: -2%;
     right: 0;
-    top: 48%;
-    width: 102%;
-    height: 0.4vh;
-    background-color: #ff0000;
+    top: 49%;
+    width: 103.9%;
+    height: 0.2vh;
+    background-color: #f31616;
     transform: rotate(90deg);
 }
     
 .diagonal-r::after {
     content: '';
     position: absolute;
-    left: -22%;
+    left: -24%;
     right: 0;
     top: 48%;
-    width: 143%;
-    height: 0.4vh;
-    background-color: #ff0000;
+    width: 147%;
+    height: 0.2vh;
+    background-color: #f31616;
     transform: rotate(45deg);
 }
     
@@ -147,20 +202,30 @@ ol, ul {
     left: -22%;
     right: 0;
     top: 48%;
-    width: 143%;
-    height: 0.4vh;
-    background-color: #ff0000;
+    width: 146%;
+    height: 0.2vh;
+    background-color: #f31616;
     transform: rotate(135deg);
 }
   
-.kbd-navigation .square:focus {
-    background: #ddd;
+.square:hover {
+    background: #333;
 }
 
 #X {
-    color: black;
+    color: white;
 }
 
 #O {
-    color: blue;
+    color: white;
+}
+
+@media screen and (min-width: 960px) {
+    .name-info {
+        width: 40vw;
+    }
+
+    .board-info {
+        width: 40vw;
+    }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
-import io from 'socket.io-client';
 
 let winnerLine = '';
 let winnerLineDirection = ''
@@ -39,13 +38,13 @@ function checkWinner (squares) {
 
 class Square extends React.Component {
   render () {
-    const className = this.props.isWinning ? `winning ${winnerLineDirection}` : 'square';
+    const className = this.props.isWinning ? `square cell-${this.props.number} winning ${winnerLineDirection}` : `square cell-${this.props.number}`;
 
     return (
       <button 
-      className={className}
-      id={this.props.value}
-      onClick={this.props.onClick}
+        className={className}
+        id={this.props.value}
+        onClick={this.props.onClick}
       >
         {this.props.value}
       </button>
@@ -59,9 +58,10 @@ class Board extends React.Component {
 
       return (
         <Square value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-        key={i}
-        isWinning={isWinning}
+          onClick={() => this.props.onClick(i)}
+          key={i}
+          number={i}
+          isWinning={isWinning}
         />
       )
   }
@@ -100,15 +100,6 @@ class Game extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.socket = io('http://localhost:3000');
-
-    this.socket.on('moveMade', (data) => {
-      // 
-      //
-    });
-  }
-
   handleClick (i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -118,11 +109,6 @@ class Game extends React.Component {
     if (checkWinner(squares) || squares[i]) {
       return;
     }
-
-    this.socket.emit('moveMade', {
-      squareIndex: i,
-      squareValue: this.state.xIsNext ? 'X' : 'O'
-    });
 
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     moves[this.state.stepNumber] = squares[i] + '-' + (i + 1);
@@ -177,17 +163,20 @@ class Game extends React.Component {
 
     return (
       <div className='game' >
+        <div className='name-info'>Tic Tac Toe</div>
+        <div className='board-info'>
         <div className='status'>{status}</div>
-        <div className='game-board' >
-        <Board 
-        squares={current.squares}
-        onClick={(i) => this.handleClick(i)}
-        winningLine={winnerLine || []}
-        />
-        </div>
+          <div className='game-board' >
+          <Board 
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+            winningLine={winnerLine || []}
+          />
+          </div>
 
-        <div className='game-info'>
-          <ol className='moves-history'>{movesHistory}</ol>
+          <div className='game-info'>
+            <ol className='moves-history'>{movesHistory}</ol>
+          </div>
         </div>
       </div>
     )
