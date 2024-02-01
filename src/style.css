@@ -220,7 +220,7 @@ ol, ul {
     color: white;
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1060px) {
     .name-info {
         width: 40vw;
     }
